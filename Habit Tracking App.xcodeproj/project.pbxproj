@@ -44,6 +44,7 @@
 		3FEF22ED2A1175C50004517A /* Habit Tracking AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Habit Tracking AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FEF22F12A1175C50004517A /* Habit_Tracking_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Habit_Tracking_AppUITests.swift; sourceTree = "<group>"; };
 		3FEF22F32A1175C50004517A /* Habit_Tracking_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Habit_Tracking_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		3FEF23002A11766F0004517A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +75,7 @@
 		3FEF22CA2A1175C40004517A = {
 			isa = PBXGroup;
 			children = (
+				3FEF23002A11766F0004517A /* README.md */,
 				3FEF22D52A1175C40004517A /* Habit Tracking App */,
 				3FEF22E62A1175C50004517A /* Habit Tracking AppTests */,
 				3FEF22F02A1175C50004517A /* Habit Tracking AppUITests */,
