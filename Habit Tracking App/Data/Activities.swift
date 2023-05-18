@@ -19,11 +19,13 @@ class Activities: ObservableObject {
         print("activity '\(activity.title)' added!")
     }
     
-    func updateActivity(new activity: Activity) {
-        if let indexActivity: Int = activities.firstIndex(where: {$0.id == activity.id}) {
+    func updateActivity(currentActivity: Activity, newActivity: Activity) {
+        print(activities.contains(currentActivity))
+        
+        if let indexActivity: Int = activities.firstIndex(of: currentActivity) {
             
-            activities[indexActivity] = activity
-            print("activity '\(activity.title)' has been updated!")
+            activities[indexActivity] = newActivity
+            print("activity '\(newActivity.title)' has been updated!")
 
         }
             else {

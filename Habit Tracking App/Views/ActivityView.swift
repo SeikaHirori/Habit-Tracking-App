@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ActivityView: View {
     @Environment(\.dismiss) var dismiss
-    @State var activity:Activity
+    @State var activity: Activity
     @ObservedObject var activities: Activities
     
     var body: some View {
@@ -67,7 +67,7 @@ struct ActivityView: View {
 //                print("Increased amount and saved to array!")
 //
 //            }
-            activities.updateActivity(new: newActivity)
+            activities.updateActivity(currentActivity: activity, newActivity: newActivity)
 
         }
         
@@ -85,7 +85,7 @@ struct ActivityView: View {
 //
 //                print("Decreased amount and saved to array!")
 //            }
-            activities.updateActivity(new: newActivity)
+            activities.updateActivity(currentActivity: activity, newActivity: newActivity)
 
 
         }
