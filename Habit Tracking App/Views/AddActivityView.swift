@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AddActivityView: View {
-//    @Environment(\.dismiss) var dismiss
+    @Environment(\.dismiss) var dismiss
     @ObservedObject var activities: Activities
     
     var body: some View {
@@ -16,9 +16,9 @@ struct AddActivityView: View {
             Text("Hello from AddActivityView")
             
             
-//            Button("dismiss") {
-//                dismiss()
-//            }
+            Button("dismiss") {
+                dismiss()
+            }
         }
     }
 }

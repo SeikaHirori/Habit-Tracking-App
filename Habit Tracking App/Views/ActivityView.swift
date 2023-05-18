@@ -10,6 +10,7 @@ import SwiftUI
 struct ActivityView: View {
     @Environment(\.dismiss) var dismiss
     @State var activity:Activity
+    @ObservedObject var activities: Activities
     
     var body: some View {
         return VStack(spacing: 30) {
@@ -33,31 +34,74 @@ struct ActivityView: View {
                 Text("Modify amount:")
                 
                 Button {
-                    activity.decreaseAmount()
+                    decreaseAmount()
                 } label: {
                     Image(systemName: "minus")
                 }
                 
                 Button {
-                    activity.increaseAmount()
+                    updateAmount()
+                    
                 } label: {
                     Image(systemName: "plus")
                 }
                 
             }
             
-            Button("Dismiss") {
-                dismiss()
-            }
+        }
+        
+        func updateAmount() {
+            let newTitle: String = activity.title
+            let newDescription: String = activity.description
+            let newAmount: Int = activity.amountCompletion + 1
+            
+            let newActivity:Activity = Activity(title: newTitle, description: newDescription, amountCompletion: newAmount)
+            
+            activity = newActivity
+            
+//            if let index = activities.activities.firstIndex(of: activity) {
+//                activities.activities[index] = newActivity
+//
+//                print("Increased amount and saved to array!")
+//
+//            }
+            activities.updateActivity(new: newActivity)
+
+        }
+        
+        func decreaseAmount() {
+            let newTitle: String = activity.title
+            let newDescription: String = activity.description
+            let newAmount: Int = activity.amountCompletion - 1
+            
+            let newActivity:Activity = Activity(title: newTitle, description: newDescription, amountCompletion: newAmount)
+            
+            activity = newActivity
+            
+//            if let index = activities.activities.firstIndex(of: activity) {
+//                activities.activities[index] = newActivity
+//
+//                print("Decreased amount and saved to array!")
+//            }
+            activities.updateActivity(new: newActivity)
+
+
         }
     }
     
 }
 
 struct ActivityView_Previews: PreviewProvider {
+    static var previewActivities: Activities {
+        var closureActivties: Activities = Activities()
+        
+        closureActivties.activities.append(Activity(title: "test meep", description: "heelllloooooo", amountCompletion: 1))
+        
+        return closureActivties
+    }
     static var previewActivity: Activity =  Activity(title: "Walking", description: "Walk while playing Pokemon Go", amountCompletion: 1)
     
     static var previews: some View {
-        ActivityView(activity: previewActivity)
+        ActivityView(activity: previewActivity, activities: previewActivities)
     }
 }

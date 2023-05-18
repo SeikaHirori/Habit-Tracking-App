@@ -13,15 +13,16 @@ struct Activity: Codable, Identifiable, Equatable, Hashable {
     let description: String
     var amountCompletion: Int
     
-    mutating func increaseAmount() -> Void {
-        amountCompletion += 1
-    }
-    
-    mutating func decreaseAmount() -> Void {
-        if !amountIsEmpty() {
-            amountCompletion -= 1
-        }
-    }
+//  // Disabling these for now
+//    mutating func increaseAmount() -> Void {
+//        amountCompletion += 1
+//    }
+//
+//    mutating func decreaseAmount() -> Void {
+//        if !amountIsEmpty() {
+//            amountCompletion -= 1
+//        }
+//    }
     
     func amountIsEmpty() -> Bool {
         return amountCompletion <= 0

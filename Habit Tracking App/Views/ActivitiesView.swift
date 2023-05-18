@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ActivitiesView: View {
     @ObservedObject var activities: Activities
-    @State private var showingCurrentActivitySheet: Bool = false
     @State private var showingAddActivitySheet: Bool = false
     
     
@@ -19,39 +18,53 @@ struct ActivitiesView: View {
             List {
                 ForEach(activities.activities) { currentActivity in
                     NavigationLink {
-                        ActivityView(activity: currentActivity)
+                        ActivityView(activity: currentActivity, activities: activities)
                     } label: {
                         Text(currentActivity.title)
                     }
                 }
-                .onDelete(perform: removeActivity)
+                .onDelete(perform: activities.removeActivity)
                 
             }
             .navigationTitle("Activities")
             //            .scrollContentBackground(.hidden)
             .toolbar {
-                //                    showingAddActivitySheet.toggle()
-                //                    let newActivitiy = Activity(title: "sleep", description: "zzz", amountCompletion: 0)
-                NavigationLink{
-                    AddActivityView(activities: activities)
-                    
-                    //
-                    //                    activities.activities.append(newActivitiy)
+
+                Button{
+//                    showingAddActivitySheet.toggle()
+                    activities.addNewActivity(activity: Activity(title: "test", description: "meep", amountCompletion: 1))
                 } label: {
                     Image(systemName: "plus")
                 }
-                //                .sheet(isPresented: $showingAddActivitySheet) {
-                //                    AddActivityView(activities: activities)
-                //                }
+                .sheet(isPresented: $showingAddActivitySheet) {
+                    AddActivityView(activities: activities)
+                }
             }
             .padding()
             
         }
         
         
-        func removeActivity(at offsets:IndexSet)  {
-            activities.activities.remove(atOffsets: offsets)
-        }
+//        func removeActivity(at offsets:IndexSet)  {
+//            activities.activities.remove(atOffsets: offsets)
+//        }
+//
+//        func addNewActivity(activity:Activity) {
+//            activities.activities.append(activity)
+//            print("activity '\(activity.title)' added!")
+//        }
+//
+//        func updateActivity(new activity: Activity) {
+//            if let indexActivity: Int = activities.activities.firstIndex(of: activity) {
+//
+//                activities.activities[indexActivity] = activity
+//                print("activity '\(activity.title)' has been updated!")
+//
+//            }
+//                else {
+//                print("Activity not found in list :'[")
+//            }
+//        }
     }
     
     struct ActivitiesView_Previews: PreviewProvider {

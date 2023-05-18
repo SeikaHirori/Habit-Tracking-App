@@ -13,7 +13,6 @@ struct ContentView: View {
     var body: some View {
         VStack {
             ActivitiesView(activities: activities)
-            
         }
         .padding()
     }
