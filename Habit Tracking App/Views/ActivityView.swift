@@ -41,7 +41,6 @@ struct ActivityView: View {
                 
                 Button {
                     updateAmount()
-                    
                 } label: {
                     Image(systemName: "plus")
                 }
@@ -59,7 +58,6 @@ struct ActivityView: View {
             
             let newActivity:Activity = Activity(title: newTitle, description: newDescription, amountCompletion: newAmount)
             
-            activity = newActivity
             
 //            if let index = activities.activities.firstIndex(of: activity) {
 //                activities.activities[index] = newActivity
@@ -68,6 +66,7 @@ struct ActivityView: View {
 //
 //            }
             activities.updateActivity(currentActivity: activity, newActivity: newActivity)
+            activity = newActivity
 
         }
         
@@ -78,7 +77,6 @@ struct ActivityView: View {
             
             let newActivity:Activity = Activity(title: newTitle, description: newDescription, amountCompletion: newAmount)
             
-            activity = newActivity
             
 //            if let index = activities.activities.firstIndex(of: activity) {
 //                activities.activities[index] = newActivity
@@ -87,6 +85,7 @@ struct ActivityView: View {
 //            }
             activities.updateActivity(currentActivity: activity, newActivity: newActivity)
 
+            activity = newActivity
 
         }
     }
