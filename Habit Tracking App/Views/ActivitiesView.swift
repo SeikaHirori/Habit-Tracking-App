@@ -18,13 +18,10 @@ struct ActivitiesView: View {
             //                Text("Hello, Activities View!")
             List {
                 ForEach(activities.activities) { currentActivity in
-                    Button {
-                        showingCurrentActivitySheet.toggle()
+                    NavigationLink {
+                        ActivityView(activity: currentActivity)
                     } label: {
                         Text(currentActivity.title)
-                    }
-                    .sheet(isPresented: $showingCurrentActivitySheet) {
-                        ActivityView(activity: currentActivity)
                     }
                 }
                 .onDelete(perform: removeActivity)
