@@ -8,49 +8,67 @@
 import SwiftUI
 
 struct ActivitiesView: View {
-    @StateObject var activities: Activities
-    @State private var showingSheet: Bool = false
+    @ObservedObject var activities: Activities
+    @State private var showingCurrentActivitySheet: Bool = false
+    @State private var showingAddActivitySheet: Bool = false
     
     
     var body: some View {
         return NavigationStack {
-            VStack {
-//                Text("Hello, Activities View!")
-                
-                if activities.activities.isEmpty == true {
-                    Text("empty ;'[")
-                } else {
-                    List(activities.activities, id: \.self) { currentActivity in
-                        Button("Show Activity") {
-                            showingSheet.toggle()
-                        }
-                        .sheet(isPresented: $showingSheet) {
-                            ActivityView(activity: currentActivity)
-                        }
-                        
+            //                Text("Hello, Activities View!")
+            List {
+                ForEach(activities.activities) { currentActivity in
+                    Button {
+                        showingCurrentActivitySheet.toggle()
+                    } label: {
+                        Text(currentActivity.title)
+                    }
+                    .sheet(isPresented: $showingCurrentActivitySheet) {
+                        ActivityView(activity: currentActivity)
                     }
                 }
+                .onDelete(perform: removeActivity)
+                
             }
             .navigationTitle("Activities")
+            //            .scrollContentBackground(.hidden)
             .toolbar {
-                Button {
-                    let newActivitiy = Activity(title: "sleep", description: "zzz", amountCompletion: 0)
+                //                    showingAddActivitySheet.toggle()
+                //                    let newActivitiy = Activity(title: "sleep", description: "zzz", amountCompletion: 0)
+                NavigationLink{
+                    AddActivityView(activities: activities)
                     
-                    activities.activities.append(newActivitiy)
+                    //
+                    //                    activities.activities.append(newActivitiy)
                 } label: {
                     Image(systemName: "plus")
                 }
+                //                .sheet(isPresented: $showingAddActivitySheet) {
+                //                    AddActivityView(activities: activities)
+                //                }
             }
             .padding()
+            
+        }
+        
+        
+        func removeActivity(at offsets:IndexSet)  {
+            activities.activities.remove(atOffsets: offsets)
         }
     }
-}
-
-struct ActivitiesView_Previews: PreviewProvider {
-    static var activitiesPreview: Activities = Activities()
     
-    
-    static var previews: some View {
-        ActivitiesView(activities: activitiesPreview)
+    struct ActivitiesView_Previews: PreviewProvider {
+        static var activitiesPreview: Activities {
+            var activitiesClosure: Activities = Activities()
+            let activityPreview1: Activity = Activity(title: "meep", description: "test this out", amountCompletion: 2)
+            activitiesClosure.activities.append(activityPreview1)
+            
+            return activitiesClosure
+        }
+        
+        
+        static var previews: some View {
+            ActivitiesView(activities: activitiesPreview)
+        }
     }
 }

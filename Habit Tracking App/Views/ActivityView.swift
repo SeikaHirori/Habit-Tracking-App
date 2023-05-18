@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ActivityView: View {
     @Environment(\.dismiss) var dismiss
-    let activity:Activity
+    @State var activity:Activity
     
     var body: some View {
         return VStack(spacing: 30) {
@@ -28,15 +28,34 @@ struct ActivityView: View {
                 Text("Completion Amount: \(activity.amountCompletion)")
                 
             }
+            
+            HStack {
+                Text("Modify amount:")
+                
+                Button {
+                    activity.decreaseAmount()
+                } label: {
+                    Image(systemName: "minus")
+                }
+                
+                Button {
+                    activity.increaseAmount()
+                } label: {
+                    Image(systemName: "plus")
+                }
+                
+            }
+            
             Button("Dismiss") {
                 dismiss()
             }
         }
     }
+    
 }
 
 struct ActivityView_Previews: PreviewProvider {
-    static let previewActivity: Activity =  Activity(title: "Walking", description: "Walk while playing Pokemon Go", amountCompletion: 1)
+    static var previewActivity: Activity =  Activity(title: "Walking", description: "Walk while playing Pokemon Go", amountCompletion: 1)
     
     static var previews: some View {
         ActivityView(activity: previewActivity)

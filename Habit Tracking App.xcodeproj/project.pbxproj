@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F5A8AB72A15B90C0094804D /* AddActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5A8AB62A15B90C0094804D /* AddActivityView.swift */; };
 		3FEF22D72A1175C40004517A /* Habit_Tracking_AppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEF22D62A1175C40004517A /* Habit_Tracking_AppApp.swift */; };
 		3FEF22D92A1175C40004517A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEF22D82A1175C40004517A /* ContentView.swift */; };
 		3FEF22DB2A1175C50004517A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3FEF22DA2A1175C50004517A /* Assets.xcassets */; };
@@ -38,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3F5A8AB62A15B90C0094804D /* AddActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddActivityView.swift; sourceTree = "<group>"; };
 		3FEF22D32A1175C40004517A /* Habit Tracking App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Habit Tracking App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FEF22D62A1175C40004517A /* Habit_Tracking_AppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Habit_Tracking_AppApp.swift; sourceTree = "<group>"; };
 		3FEF22D82A1175C40004517A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 			children = (
 				3FEF23092A11C5730004517A /* ActivitiesView.swift */,
 				3FEF230B2A11C5850004517A /* ActivityView.swift */,
+				3F5A8AB62A15B90C0094804D /* AddActivityView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -298,6 +301,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3FEF23062A11BE250004517A /* Activities.swift in Sources */,
+				3F5A8AB72A15B90C0094804D /* AddActivityView.swift in Sources */,
 				3FEF23042A11BE0E0004517A /* Activity.swift in Sources */,
 				3FEF22D92A1175C40004517A /* ContentView.swift in Sources */,
 				3FEF22D72A1175C40004517A /* Habit_Tracking_AppApp.swift in Sources */,

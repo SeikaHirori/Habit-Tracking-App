@@ -18,10 +18,11 @@ So, there are three levels to this app, and you can choose how far you want to g
 
 Hints:
 - [x] Start with your data: define a struct that holds a single activity, and a class that holds an array of activities.
-- [ ] The class will need to conform to ObservableObject and use @Published for its property.
+- [x] The class will need to conform to ObservableObject and use @Published for its property.
 - [ ] Your main listing and form should both be able to read the shared activities object.
-- [ ] Make sure your activity conforms to Identifiable to avoid problems.
+- [x] Make sure your activity conforms to Identifiable to avoid problems.
 - [ ] Present your adding form using sheet(), and your activity detail view (if you add one) using NavigationLink.
+    - NOTE: Currently having the styles reversed; need to change later
 
 
 Making the button to increment completion count will challenge you, because you need to modify the activity that was passed in. If you’re stuck, the easiest approach is this:
