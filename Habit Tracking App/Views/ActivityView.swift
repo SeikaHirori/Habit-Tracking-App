@@ -52,7 +52,9 @@ struct ActivityView: View {
         
         func updateAmount() {
             let newTitle: String = activity.title
-            let newDescription: String = activity.description
+//            let newDescription: String = activity.description
+            let newDescription: String = activity.description + ":')" // testing only
+
             let newAmount: Int = activity.amountCompletion + 1
             
             let newActivity:Activity = Activity(title: newTitle, description: newDescription, amountCompletion: newAmount)
