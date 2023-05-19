@@ -8,79 +8,76 @@
 import SwiftUI
 
 struct ActivitiesView: View {
-    @ObservedObject var activities: Activities
+    @StateObject var activities: Activities = UserDefaults.standard.object(forKey: "UserData") as? Activities ?? Activities()
     @State private var showingAddActivitySheet: Bool = false
     
     
     var body: some View {
-        return NavigationStack {
-            //                Text("Hello, Activities View!")
-            List {
-                ForEach(activities.activities) { currentActivity in
-                    NavigationLink {
-                        ActivityView(activity: currentActivity, activities: activities)
-                    } label: {
-                        Text(currentActivity.title)
-                    }
-                }
-                .onDelete(perform: activities.removeActivity)
-                
-            }
-            .navigationTitle("Activities")
-            //            .scrollContentBackground(.hidden)
-            .toolbar {
-
-                Button{
-                    showingAddActivitySheet.toggle()
-
-                    //  // Debugging only
-                    //                    activities.addNewActivity(activity: Activity(title: "test", description: "meep", amountCompletion: 1))
-                } label: {
-                    Image(systemName: "plus")
-                }
-                .sheet(isPresented: $showingAddActivitySheet) {
-                    AddActivityView(activities: activities)
-                }
-            }
-            .padding()
+        return VStack {
             
+            NavigationStack {
+                //                Text("Hello, Activities View!")
+                Section {
+                    List {
+                        ForEach(activities.activities) { currentActivity in
+                            NavigationLink {
+                                ActivityView(activity: currentActivity, activities: activities)
+                            } label: {
+                                Text(currentActivity.title)
+                            }
+                        }
+                        .onDelete(perform: activities.removeActivity)
+                        
+                    }
+                    .navigationTitle("Activities")
+                    //            .scrollContentBackground(.hidden)
+                    .toolbar {
+                        
+                        Button{
+                            showingAddActivitySheet.toggle()
+                            
+                            //  // Debugging only
+                            //                    activities.addNewActivity(activity: Activity(title: "test", description: "meep", amountCompletion: 1))
+                        } label: {
+                            Image(systemName: "plus")
+                        }
+                        .sheet(isPresented: $showingAddActivitySheet) {
+                            AddActivityView(activities: activities)
+                        }
+                    }
+                    .padding()
+                    
+                }
+                
+                Button("Save data"){
+                    self.saveDataToUserDefault()
+                }
+            }
         }
-        
-        
-//        func removeActivity(at offsets:IndexSet)  {
-//            activities.activities.remove(atOffsets: offsets)
-//        }
-//
-//        func addNewActivity(activity:Activity) {
-//            activities.activities.append(activity)
-//            print("activity '\(activity.title)' added!")
-//        }
-//
-//        func updateActivity(new activity: Activity) {
-//            if let indexActivity: Int = activities.activities.firstIndex(of: activity) {
-//
-//                activities.activities[indexActivity] = activity
-//                print("activity '\(activity.title)' has been updated!")
-//
-//            }
-//                else {
-//                print("Activity not found in list :'[")
-//            }
-//        }
     }
     
-    struct ActivitiesView_Previews: PreviewProvider {
-        static var activitiesPreview: Activities {
-            var activitiesClosure: Activities = Activities()
-            let activityPreview1: Activity = Activity(title: "meep", description: "test this out", amountCompletion: 2)
-            activitiesClosure.activities.append(activityPreview1)
-            
-            return activitiesClosure
-        }
+    func saveDataToUserDefault() -> Void {
+//        let defaults:UserDefaults = UserDefaults.standard
+//        defaults.set(activities, forKey: "UserData")
         
+        UserDefaults.standard.set(activities.activities, forKey: "UserData")
         
-        static var previews: some View {
-            ActivitiesView(activities: activitiesPreview)
-        }
+        print("Saving habits to user default")
+    }
+    
+}
+
+struct ActivitiesView_Previews: PreviewProvider {
+    static var activitiesPreview: Activities {
+        var activitiesClosure: Activities = Activities()
+        let activityPreview1: Activity = Activity(title: "meep", description: "test this out", amountCompletion: 2)
+        activitiesClosure.activities.append(activityPreview1)
+        
+        return activitiesClosure
+    }
+    
+    
+    static var previews: some View {
+        ActivitiesView(activities: activitiesPreview)
     }
 }
