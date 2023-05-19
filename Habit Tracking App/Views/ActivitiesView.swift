@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct ActivitiesView: View {
-    @StateObject var activities: Activities = UserDefaults.standard.object(forKey: "UserData") as? Activities ?? Activities()
+    @StateObject var activities: Activities = Activities()
+//    @StateObject var activities: Activities = UserDefaults.standard.object(forKey: "UserData") as? Activities ?? Activities()
     @State private var showingAddActivitySheet: Bool = false
     
     
@@ -49,9 +50,9 @@ struct ActivitiesView: View {
                     
                 }
                 
-                Button("Save data"){
-                    self.saveDataToUserDefault()
-                }
+//                Button("Save data"){
+//                    self.saveDataToUserDefault()
+//                }
             }
         }
     }
