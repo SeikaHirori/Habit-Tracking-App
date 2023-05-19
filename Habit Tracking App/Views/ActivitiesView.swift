@@ -31,8 +31,10 @@ struct ActivitiesView: View {
             .toolbar {
 
                 Button{
-//                    showingAddActivitySheet.toggle()
-                    activities.addNewActivity(activity: Activity(title: "test", description: "meep", amountCompletion: 1))
+                    showingAddActivitySheet.toggle()
+
+                    //  // Debugging only
+                    //                    activities.addNewActivity(activity: Activity(title: "test", description: "meep", amountCompletion: 1))
                 } label: {
                     Image(systemName: "plus")
                 }

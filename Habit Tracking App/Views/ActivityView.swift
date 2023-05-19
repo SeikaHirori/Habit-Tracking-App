@@ -31,28 +31,37 @@ struct ActivityView: View {
             }
             
             HStack {
-                Text("Modify amount:")
-                
-                Button {
-                    decreaseAmount()
-                } label: {
-                    Image(systemName: "minus")
-                }
-                
-                Button {
+                Stepper("Update amount", onIncrement: {
                     updateAmount()
-                } label: {
-                    Image(systemName: "plus")
-                }
+                }, onDecrement: {
+                    decreaseAmount()
+                })
                 
+//                Section("V1"){
+//                    Text("Modify amount:")
+//
+//                    Button {
+//                        decreaseAmount()
+//                    } label: {
+//                        Image(systemName: "minus")
+//                    }
+//
+//                    Button {
+//                        updateAmount()
+//                    } label: {
+//                        Image(systemName: "plus")
+//                    }
+//                }
             }
+            .padding()
             
         }
         
         func updateAmount() {
             let newTitle: String = activity.title
-//            let newDescription: String = activity.description
-            let newDescription: String = activity.description + ":')" // testing only
+            
+            let newDescription: String = activity.description // final release
+//            let newDescription: String = activity.description + ":')" // testing only
 
             let newAmount: Int = activity.amountCompletion + 1
             
@@ -73,8 +82,13 @@ struct ActivityView: View {
         func decreaseAmount() {
             let newTitle: String = activity.title
             let newDescription: String = activity.description
-            let newAmount: Int = activity.amountCompletion - 1
-            
+            var newAmount: Int {
+                if activity.amountCompletion > 0 {
+                    return activity.amountCompletion - 1
+                } else {
+                    return 0
+                }
+            }
             let newActivity:Activity = Activity(title: newTitle, description: newDescription, amountCompletion: newAmount)
             
             
