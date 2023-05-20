@@ -11,3 +11,9 @@
     
 - GitHub repo of array of list:
     - https://github.com/twostraws/HackingWithSwift/blob/main/SwiftUI/project7/iExpense/Expenses.swift
+
+## RFER #2
+- Storing array into UserDefaults
+
+- Link:
+    - https://cocoacasts.com/ud-3-how-to-store-an-array-in-user-defaults-in-swift
