@@ -8,7 +8,11 @@
 import Foundation
 
 class Activities: ObservableObject {
-    @Published var activities = [Activity]()
+    @Published var activities:[Activity] = [Activity]()
+    
+    init(activities: [Activity] = [Activity]()) {
+        self.activities = activities
+    }
     
     func removeActivity(at offsets:IndexSet)  {
         activities.remove(atOffsets: offsets)

@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct ActivitiesView: View {
-    @StateObject var activities: Activities = Activities()
-//    @StateObject var activities: Activities = UserDefaults.standard.object(forKey: "UserData") as? Activities ?? Activities()
+//    @StateObject var activities: Activities = Activities()
+    @StateObject var activities: Activities = Activities(activities: UserDefaults.standard.object(forKey: "UserData") as? [Activity] ?? [Activity]())  
+    
     @State private var showingAddActivitySheet: Bool = false
     
     
@@ -50,21 +51,32 @@ struct ActivitiesView: View {
                     
                 }
                 
-//                Button("Save data"){
-//                    self.saveDataToUserDefault()
-//                }
+                Button("Save data"){
+                    self.saveDataToUserDefault()
+                }
             }
         }
     }
     
     func saveDataToUserDefault() -> Void {
+        // v1
 //        let defaults:UserDefaults = UserDefaults.standard
 //        defaults.set(activities, forKey: "UserData")
         
-        UserDefaults.standard.set(activities.activities, forKey: "UserData")
+        // v2
+//        let defaults = UserDefaults.standard
+//        defaults.set(activities.activities, forKey: "UserData")
         
-        print("Saving habits to user default")
+        // v3 // #RFER #3
+        if let data = try? PropertyListEncoder().encode(activities.activities) {
+            UserDefaults.standard.set(data, forKey: "UserData")
+            
+            print("Saving habits to user default")
+        }
+        
     }
+    
+    
     
 }
 

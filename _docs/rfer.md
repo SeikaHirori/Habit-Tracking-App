@@ -17,3 +17,16 @@
 
 - Link:
     - https://cocoacasts.com/ud-3-how-to-store-an-array-in-user-defaults-in-swift
+    
+- NOTE:
+    - Currently, this causes the error:
+    ``
+        Attempt to insert non-property list object
+    ``
+
+
+## RFER #3
+- Storing arrays of structs into UserDefaults
+
+- Link: 
+    - https://stackoverflow.com/a/55815674
