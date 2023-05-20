@@ -8,18 +8,18 @@
 import SwiftUI
 
 struct ActivitiesView: View {
-//    @StateObject var activities: Activities = Activities()
+    @StateObject var activities: Activities = Activities()
     
     // FIX: This currently doesn't work
-    @StateObject var activities: Activities = Activities(activities: {
-        if let data = UserDefaults.standard.data(forKey: "UserData") {
-            let closureArray: [Activity] = try! PropertyListDecoder().decode([Activity].self, from: data)
-            
-        }
-    } as? [Activity] ?? [Activity]())
+//    @StateObject var activities: Activities = Activities(activities: {
+//        if let data = UserDefaults.standard.data(forKey: "UserData") {
+//            let closureArray: [Activity] = try! PropertyListDecoder().decode([Activity].self, from: data)
+//
+//        }
+//    } as? [Activity] ?? [Activity]())
     
     @State private var showingAddActivitySheet: Bool = false
-    
+
     
     var body: some View {
         return VStack {
@@ -44,7 +44,7 @@ struct ActivitiesView: View {
                         Button{
                             showingAddActivitySheet.toggle()
                         } label: {
-                            Image(systemName: "plus")
+                            Label("Add", systemImage: "plus")
                         }
                         .sheet(isPresented: $showingAddActivitySheet) {
                             AddActivityView(activities: activities)
@@ -72,14 +72,6 @@ struct ActivitiesView: View {
     }
     
     func saveDataToUserDefault() -> Void {
-        // v1
-//        let defaults:UserDefaults = UserDefaults.standard
-//        defaults.set(activities, forKey: "UserData")
-        
-        // v2
-//        let defaults = UserDefaults.standard
-//        defaults.set(activities.activities, forKey: "UserData")
-        
         // v3 // #RFER #3
         if let data = try? PropertyListEncoder().encode(activities.activities) {
             UserDefaults.standard.set(data, forKey: "UserData")
@@ -91,6 +83,7 @@ struct ActivitiesView: View {
     
     func loadDataFromUserDefault() -> Void {
         
+        // #RFER #3
         if let data = UserDefaults.standard.data(forKey: "UserData") {
             let closureArray: [Activity] = try! PropertyListDecoder().decode([Activity].self, from: data)
             

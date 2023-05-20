@@ -42,20 +42,12 @@ struct ActivityView: View {
         func updateAmount() {
             let newTitle: String = activity.title
             
-            let newDescription: String = activity.description // final release
-//            let newDescription: String = activity.description + ":')" // testing only
+            let newDescription: String = activity.description // final 
 
             let newAmount: Int = activity.amountCompletion + 1
             
             let newActivity:Activity = Activity(title: newTitle, description: newDescription, amountCompletion: newAmount)
             
-            
-//            if let index = activities.activities.firstIndex(of: activity) {
-//                activities.activities[index] = newActivity
-//
-//                print("Increased amount and saved to array!")
-//
-//            }
             activities.updateActivity(currentActivity: activity, newActivity: newActivity)
             activity = newActivity
 
