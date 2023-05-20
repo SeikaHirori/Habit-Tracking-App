@@ -39,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3F4756662A19880300676E40 /* errors.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = errors.md; sourceTree = "<group>"; };
 		3F5A8AB62A15B90C0094804D /* AddActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddActivityView.swift; sourceTree = "<group>"; };
 		3FEF22D32A1175C40004517A /* Habit Tracking App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Habit Tracking App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FEF22D62A1175C40004517A /* Habit_Tracking_AppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Habit_Tracking_AppApp.swift; sourceTree = "<group>"; };
@@ -147,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				3FEF23022A1178920004517A /* rfer.md */,
+				3F4756662A19880300676E40 /* errors.md */,
 			);
 			path = _docs;
 			sourceTree = "<group>";

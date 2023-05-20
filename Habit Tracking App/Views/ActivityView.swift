@@ -14,18 +14,15 @@ struct ActivityView: View {
     
     var body: some View {
         return VStack(spacing: 30) {
-//            Text("Hello from Activity View!")
 
             
             VStack(spacing: 20) {
-//                Text("Activity Title")
+
                 Text(activity.title)
                     .font(.headline)
                 
-//                Text("Activity Description")
                 Text(activity.description)
                 
-//                Text("Activity's completion amount")
                 Text("Completion Amount: \(activity.amountCompletion)")
                 
             }
@@ -36,22 +33,7 @@ struct ActivityView: View {
                 }, onDecrement: {
                     decreaseAmount()
                 })
-                
-//                Section("V1"){
-//                    Text("Modify amount:")
-//
-//                    Button {
-//                        decreaseAmount()
-//                    } label: {
-//                        Image(systemName: "minus")
-//                    }
-//
-//                    Button {
-//                        updateAmount()
-//                    } label: {
-//                        Image(systemName: "plus")
-//                    }
-//                }
+
             }
             .padding()
             
@@ -92,11 +74,6 @@ struct ActivityView: View {
             let newActivity:Activity = Activity(title: newTitle, description: newDescription, amountCompletion: newAmount)
             
             
-//            if let index = activities.activities.firstIndex(of: activity) {
-//                activities.activities[index] = newActivity
-//
-//                print("Decreased amount and saved to array!")
-//            }
             activities.updateActivity(currentActivity: activity, newActivity: newActivity)
 
             activity = newActivity

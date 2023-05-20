@@ -9,7 +9,14 @@ import SwiftUI
 
 struct ActivitiesView: View {
 //    @StateObject var activities: Activities = Activities()
-    @StateObject var activities: Activities = Activities(activities: UserDefaults.standard.object(forKey: "UserData") as? [Activity] ?? [Activity]())  
+    
+    // FIX: This currently doesn't work
+    @StateObject var activities: Activities = Activities(activities: {
+        if let data = UserDefaults.standard.data(forKey: "UserData") {
+            let closureArray: [Activity] = try! PropertyListDecoder().decode([Activity].self, from: data)
+            
+        }
+    } as? [Activity] ?? [Activity]())
     
     @State private var showingAddActivitySheet: Bool = false
     
@@ -18,7 +25,6 @@ struct ActivitiesView: View {
         return VStack {
             
             NavigationStack {
-                //                Text("Hello, Activities View!")
                 Section {
                     List {
                         ForEach(activities.activities) { currentActivity in
@@ -37,9 +43,6 @@ struct ActivitiesView: View {
                         
                         Button{
                             showingAddActivitySheet.toggle()
-                            
-                            //  // Debugging only
-                            //                    activities.addNewActivity(activity: Activity(title: "test", description: "meep", amountCompletion: 1))
                         } label: {
                             Image(systemName: "plus")
                         }
@@ -51,10 +54,20 @@ struct ActivitiesView: View {
                     
                 }
                 
-                Button("Save data"){
-                    self.saveDataToUserDefault()
+                HStack {
+                    Button("Save data"){
+                        self.saveDataToUserDefault()
+                    }
+                    
+                    Button("Load data") {
+                        self.loadDataFromUserDefault()
+                    }
                 }
+                
             }
+        }
+        .onAppear {
+            loadDataFromUserDefault()
         }
     }
     
@@ -76,7 +89,18 @@ struct ActivitiesView: View {
         
     }
     
-    
+    func loadDataFromUserDefault() -> Void {
+        
+        if let data = UserDefaults.standard.data(forKey: "UserData") {
+            let closureArray: [Activity] = try! PropertyListDecoder().decode([Activity].self, from: data)
+            
+            activities.activities = closureArray
+            
+            print()
+            print("Data is loaded!")
+        }
+        
+    }
     
 }
 
